@@ -12,7 +12,7 @@ import com.bookinventory.core.model.Autor;
 import com.bookinventory.core.service.AutorService;
 
 @RestController
-@RequestMapping("/autor")
+@RequestMapping("/autor/")
 public class AutorREST {
 	
 	//Inyeccion del servicio AutoService
