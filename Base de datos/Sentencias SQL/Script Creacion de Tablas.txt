@@ -25,7 +25,7 @@ CREATE TABLE libro(
  nombre CHARACTER VARYING(50) NOT NULL,
  autor INT NOT NULL,
  categoria INT NOT NULL,
- precio MONEY NOT NULL,
+ precio NUMERIC(7,2) NOT NULL,
  estado CHARACTER VARYING(11) NOT NULL,
  
  FOREIGN KEY (autor) REFERENCES autor(id_autor),

@@ -1,5 +1,4 @@
-INSERT INTO autor (nombre, fecha_nacimiento, pais) 
-VALUES ('Gabriel García Márquez', '1927-03-06', 'Colombia'),
+INSERT INTO autor VALUES ('Gabriel García Márquez', '1927-03-06', 'Colombia'),
  ('J.K. Rowling', '1965-07-31', 'Reino Unido'),
  ('Haruki Murakami', '1949-01-12', 'Japón'),
  ('Jane Austen', '1775-12-16', 'Reino Unido'),
@@ -8,4 +7,5 @@ VALUES ('Gabriel García Márquez', '1927-03-06', 'Colombia'),
  ('Leo Tolstoy', '1828-09-09', 'Rusia'),
  ('Gabriela Mistral', '1889-04-07', 'Chile'),
  ('Charles Dickens', '1812-02-07', 'Reino Unido'),
-('Mark Twain', '1835-11-30', 'Estados Unidos');
+ ('Mark Twain', '1835-11-30', 'Estados Unidos');
+ 
