@@ -17,5 +17,9 @@ public class LibroService {
 	public List<Libro> getAllLibros(){
 		return libroRepository.findAll();
 	}
+	
+	public <S extends Libro> S save(S entity) {
+		return libroRepository.save(entity);
+	}
 
 }

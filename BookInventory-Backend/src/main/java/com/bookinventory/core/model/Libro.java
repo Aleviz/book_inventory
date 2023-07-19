@@ -18,10 +18,10 @@ public class Libro {
 	private String nombre;
 	
 	@ManyToOne
-	@JoinColumn(name="id_autor")
+	@JoinColumn(name="autor")
 	private Autor autor;
 	@ManyToOne
-	@JoinColumn(name="id_categoria")
+	@JoinColumn(name="categoria")
 	private Categoria categoria;
 	private double precio;
 	private String estado;
