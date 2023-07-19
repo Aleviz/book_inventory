@@ -1,1 +1,26 @@
-<p>administrar-libro works!</p>
+<div class="title">Book Inventory | Tabla </div>
+
+<div class="table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Autor</th>
+                <th>Categoria</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of libros">
+                <th>{{item.nombre}}</th>
+                <th>${{item.precio}}</th>
+                <th>{{item.autor.nombre}}</th>
+                <th>{{item.categoria.nombre}}</th>
+            </tr>
+        </tbody>
+        
+    </table>
+</div>
+
+<router-outlet></router-outlet>
