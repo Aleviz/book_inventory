@@ -14,16 +14,17 @@ import com.bookinventory.core.service.CategoriaService;
 @RestController
 @RequestMapping("/categoria/")
 public class CategoriaREST {
-	//Inyeccion del servicio AutoService
+	
+		//Inyeccion del servicio CategoriaService
 		@Autowired
 		private CategoriaService categoriaService;
 		
 		
 		
 		/*
-		 * Este metodo nos muestra todos los autores
-		 * @return una lista de tipo Autor, en formato json, el cual contiene todaos los datos
-		 * de la tabla autor
+		 * Este metodo nos muestra todos las categorias
+		 * @return una lista de tipo Categoria, en formato json, el cual contiene todaos los datos
+		 * de la tabla categoria
 		 * */
 		@GetMapping
 		public ResponseEntity<List<Categoria>> getAllCategorias(){
