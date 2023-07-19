@@ -1,0 +1,11 @@
+INSERT INTO categoria (nombre, archivo) VALUES( 'Drama', '0001' );
+INSERT INTO categoria (nombre, archivo) VALUES( 'Terror', '0002' );
+INSERT INTO categoria (nombre, archivo) VALUES( 'Misterio y Suspenso', '0003' );
+INSERT INTO categoria (nombre, archivo) VALUES( 'Ficcion', '0004' );
+INSERT INTO categoria (nombre, archivo) VALUES( 'Historia', '0005' );
+INSERT INTO categoria (nombre, archivo) VALUES( 'Fantasia', '0006' );
+INSERT INTO categoria (nombre, archivo) VALUES( 'Romance', '0007' );
+INSERT INTO categoria (nombre, archivo) VALUES( 'Biografia', '0008' );
+INSERT INTO categoria (nombre, archivo) VALUES( 'Autoayuda', '0009' );
+INSERT INTO categoria (nombre, archivo) VALUES( 'Ciencia y Tecnologia', '00010' );
+INSERT INTO categoria (nombre, archivo) VALUES( 'Poesia', '00011' );
