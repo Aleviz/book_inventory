@@ -22,5 +22,9 @@ export class LibroService {
     return this.httpClient.get(this.API_SERVER);
   }
 
+  public desactivar(libro:any): Observable<any>{
+    return this.httpClient.post(this.API_SERVER, libro);
+  }
+
   
 }

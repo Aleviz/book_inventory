@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,14 +29,15 @@ public class LibroREST {
 	
 	
 	/*
-	 * Este metodo nos muestra todos los libros
+	 * Este metodo nos muestra todos los libros que esten activos
 	 * @return una lista de tipo Libro, en formato json, el cual contiene todaos los datos
 	 * de la tabla libro
 	 * */
 	@GetMapping
 	public ResponseEntity<List<Libro>> getAllLibros(){
-		return ResponseEntity.ok(libroService.getAllLibros());
+		return ResponseEntity.ok(libroService.getAllLibroActive("activo"));
 	}
+	
 	
 	@PostMapping
 	public ResponseEntity<Libro> saveLibro(@RequestBody Libro libro){
@@ -43,8 +45,9 @@ public class LibroREST {
 			Libro libSave = libroService.save(libro);
 			return ResponseEntity.created(new URI("/libro/"+libSave.getIdLibro())).body(libSave);
 		}catch(Exception e) {
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+						return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 		}
 	}
+	
 	
 }

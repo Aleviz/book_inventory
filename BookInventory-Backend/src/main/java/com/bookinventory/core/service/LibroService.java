@@ -14,12 +14,12 @@ public class LibroService {
 	@Autowired
 	private LibroRepository libroRepository;
 	
-	public List<Libro> getAllLibros(){
-		return libroRepository.findAll();
-	}
-	
+		
 	public <S extends Libro> S save(S entity) {
 		return libroRepository.save(entity);
 	}
 
+	public List<Libro> getAllLibroActive(String estado){
+		return libroRepository.findByEstado(estado);
+	}
 }

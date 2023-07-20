@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LibroService } from '../servicio/libro/libro.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-administrar-libro',
@@ -9,6 +10,7 @@ import { LibroService } from '../servicio/libro/libro.service';
 export class AdministrarLibroComponent implements OnInit {
 
   libros: any; // Declaración de variable de tipo any(puede almacenar cualquier tipo de dato)
+  libroForm : FormGroup;
   
 
   /* 
@@ -16,6 +18,7 @@ export class AdministrarLibroComponent implements OnInit {
    * Este nos permitira utilizar el servicio para mas adelante poder obtener y mostrar sus datos
   */
   constructor(
+    public formBuilder: FormBuilder,
     public libroService: LibroService 
     ){}
 
@@ -26,9 +29,37 @@ export class AdministrarLibroComponent implements OnInit {
      * a la propiedad libros.
      */
   ngOnInit(): void {
-    this.libroService.getAllLibros().subscribe(resp=>{
+      this.libroService.getAllLibros().subscribe(resp=>{
       this.libros = resp;
     });
+
+    this.libroForm = this.formBuilder.group({
+      idLibro: [''],
+      nombre: [''],
+      autor:[''],
+      categoria:[''],
+      precio:[''],
+      estado:['']
+    });
+  }
+
+  desactivar(libro){
+    this.libroForm.setValue({
+      idLibro: libro.idLibro,
+      nombre: libro.nombre,
+      autor: libro.autor,
+      categoria: libro.categoria,
+      precio: libro.precio,
+      estado: 'desactivado',
+    });
+
+    this.libroService.desactivar(this.libroForm.value).subscribe(res => {
+     this.libros = this.libros.filter(libro1 => res.idLibro!=libro1.idLibro);
+    
+     if(res == true){
+     this.libros.pop(libro);
+    }
+    })
   }
 
 }
