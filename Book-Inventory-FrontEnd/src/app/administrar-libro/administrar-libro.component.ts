@@ -103,6 +103,19 @@ export class AdministrarLibroComponent implements OnInit {
     
   }
 
+  editar(contenido, libro){
+    this.libroForm.setValue({
+      
+      idLibro: libro.idLibro,
+      nombre: libro.nombre,
+      autor: {idAutor:libro.autor.idAutor, nombre:libro.autor.nombre, fechaNacimiento:libro.autor.fechaNacimiento, pais:libro.autor.pais},
+      categoria: {idCategoria:libro.categoria.idCategoria, nombre:libro.categoria.nombre, archivo:libro.categoria.archivo},
+      precio: libro.precio,
+      estado: libro.estado,
+    });
+
+    this.modal.open(contenido,{size:'lg'});
+  }
 
 
 
