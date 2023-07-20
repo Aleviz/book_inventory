@@ -26,5 +26,8 @@ export class LibroService {
     return this.httpClient.post(this.API_SERVER, libro);
   }
 
+  public saveLibro(libro:any):Observable<any>{
+    return this.httpClient.post(this.API_SERVER, libro);
+  }
   
 }

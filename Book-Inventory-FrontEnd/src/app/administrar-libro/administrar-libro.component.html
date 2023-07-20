@@ -1,6 +1,11 @@
 <div class="title">Book Inventory | Tabla </div>
-
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" (click)="openForm(contenido)">
+    Crear Libro
+</button>
+   
 <div class="table-container">
+
     <table class="table">
         <thead>
             <tr>
@@ -8,20 +13,76 @@
                 <th>Precio</th>
                 <th>Autor</th>
                 <th>Categoria</th>
-                
+                <th>Accion</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let item of libros">
                 <th>{{item.nombre}}</th>
-                <th>${{item.precio}}</th>
+                <th>{{item.precio}}</th>
                 <th>{{item.autor.nombre}}</th>
                 <th>{{item.categoria.nombre}}</th>
-                <td><button type="button" (click)="desactivar(item)">Desactivar</button></td>
+                <td><button type="button" (click)="desactivar(item)">Desactivar</button>
+                <button type="button" class="btn btn-outline-danger" (click)="openForm(contenido)">Editar</button></td>
             </tr>
         </tbody>
-        
+
     </table>
+
 </div>
+
+<ng-template #contenido let-modal>
+   
+    
+
+    <div class="modal-header">
+        <h4 class="modal-title">Formulario</h4>
+        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+        <div class="formularioRegistro">
+            <form [formGroup]="libroForm" (ngSubmit)="guardar()">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" formControlName="nombre" class="form-control">
+                </div>
+        
+                <div class="form-group">
+                    <label>Precio</label>
+                    <input type="number" formControlName="precio" class="form-control">
+                </div>
+        
+                <div class="form-group" formGroupName="autor">
+                    <label>Autor</label>
+                    <select name="autor" id="autor" formControlName="idAutor" class="form-control">
+                        <option [ngValue]="item.idAutor" *ngFor="let item of autores">{{item.nombre}}</option>
+                    </select>
+                  </div>
+                  
+                  <div class="form-group" formGroupName="categoria">
+                    <label>Categoria</label>
+                    <select name="categoria" id="categoria" formControlName="idCategoria" class="form-control">
+                        <option [ngValue]="item.idCategoria" *ngFor="let item of categorias">{{item.nombre}}</option>
+                    </select>
+                </div>
+                  
+                 
+                  
+        
+        
+                <button type="submit" class="btn btn-primary" >Save</button>
+        
+            </form>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" (click)="modal.close()">Cancelar</button>
+    </div>
+</ng-template>
+
+
 
 <router-outlet></router-outlet>
