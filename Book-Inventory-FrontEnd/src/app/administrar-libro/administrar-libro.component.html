@@ -3,7 +3,7 @@
 <button type="button" class="btn btn-primary" (click)="openForm(contenido)">
     Crear Libro
 </button>
-   
+
 <div class="table-container">
 
     <table class="table">
@@ -19,11 +19,13 @@
         <tbody>
             <tr *ngFor="let item of libros">
                 <th>{{item.nombre}}</th>
-                <th>{{item.precio}}</th>
+                <th>${{item.precio}}</th>
                 <th>{{item.autor.nombre}}</th>
                 <th>{{item.categoria.nombre}}</th>
                 <td><button type="button" (click)="desactivar(item)">Desactivar</button>
-                <button type="button" class="btn btn-outline-danger" (click)="editar(contenido,item)">Editar</button></td>
+                    <button type="button" class="btn btn-outline-danger"
+                        (click)="editar(contenido,item)">Editar</button>
+                </td>
             </tr>
         </tbody>
 
@@ -32,12 +34,12 @@
 </div>
 
 <ng-template #contenido let-modal>
-   
-    
+
+
 
     <div class="modal-header">
         <h4 class="modal-title">Formulario</h4>
-        <button class="close" aria-label="close" type="button" (click)="modal.dismiss()">
+        <button class="close" aria-label="close" type="button" (click)="resetearFormulario();modal.dismiss()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -47,39 +49,47 @@
             <form [formGroup]="libroForm" (ngSubmit)="guardar()">
                 <div class="form-group">
                     <label>Nombre</label>
-                    <input type="text" formControlName="nombre" class="form-control">
+                    <input [class]="isValidFieldNombre('nombre').invalidClass" type="text" formControlName="nombre"
+                        class="form-control" placeholder="Por favor ingresa el nombre del Libro">
+
+                    <div *ngIf="isValidFieldNombre('nombre').errorMessage" class="invalid-feedback">
+                        {{isValidFieldNombre('nombre').errorMessage }}</div>
+
                 </div>
-        
+
                 <div class="form-group">
                     <label>Precio</label>
-                    <input type="number" formControlName="precio" class="form-control">
+                    <input [class]="isValidFieldPrecio('precio').invalidClass" type="number" formControlName="precio"
+                        class="form-control" placeholder="Por favor ingresa el valor del Libro" min="0">
+                    <div *ngIf="isValidFieldPrecio('precio').errorMessage" class="invalid-feedback">
+                        {{isValidFieldPrecio('precio').errorMessage }}</div>
                 </div>
-        
+
                 <div class="form-group" formGroupName="autor">
                     <label>Autor</label>
                     <select name="autor" id="autor" formControlName="idAutor" class="form-control">
                         <option [ngValue]="item.idAutor" *ngFor="let item of autores">{{item.nombre}}</option>
                     </select>
-                  </div>
-                  
-                  <div class="form-group" formGroupName="categoria">
+                </div>
+
+                <div class="form-group" formGroupName="categoria">
                     <label>Categoria</label>
                     <select name="categoria" id="categoria" formControlName="idCategoria" class="form-control">
                         <option [ngValue]="item.idCategoria" *ngFor="let item of categorias">{{item.nombre}}</option>
                     </select>
                 </div>
-                  
-                 
-                  
-        
-        
-                <button type="submit" class="btn btn-primary" >Save</button>
-        
+
+
+
+
+
+                <button type="submit" class="btn btn-primary" [disabled]="libroForm.invalid">Save</button>
+
             </form>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-success" (click)="modal.close()">Cancelar</button>
+        <button type="button" class="btn btn-success" (click)="resetearFormulario(); modal.close()">Cancelar</button>
     </div>
 </ng-template>
 
