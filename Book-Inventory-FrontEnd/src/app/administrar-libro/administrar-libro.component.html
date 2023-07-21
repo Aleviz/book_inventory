@@ -1,37 +1,11 @@
-<div class="title">Book Inventory | Tabla </div>
+ <h1 class="titulo">BOOK INVENTORY</h1>
+ <div class="underline" ></div>
+ <p class="descrip">Administracion de Libros</p>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" (click)="openForm(contenido)">
+<button type="button" class="btn-libro" (click)="openForm(contenido)">
     Crear Libro
 </button>
 
-<div class="table-container">
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Autor</th>
-                <th>Categoria</th>
-                <th>Accion</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of libros">
-                <th>{{item.nombre}}</th>
-                <th>${{item.precio}}</th>
-                <th>{{item.autor.nombre}}</th>
-                <th>{{item.categoria.nombre}}</th>
-                <td><button type="button" (click)="desactivar(item)">Desactivar</button>
-                    <button type="button" class="btn btn-outline-danger"
-                        (click)="editar(contenido,item)">Editar</button>
-                </td>
-            </tr>
-        </tbody>
-
-    </table>
-
-</div>
 
 <ng-template #contenido let-modal>
 
@@ -39,11 +13,14 @@
 
     <div class="modal-header">
         <h4 class="modal-title">Formulario</h4>
+      
+
         <button class="close" aria-label="close" type="button" (click)="resetearFormulario();modal.dismiss()">
             <span aria-hidden="true">&times;</span>
         </button>
-    </div>
 
+    </div>
+    <div class="underline2" ></div>
     <div class="modal-body">
         <div class="formularioRegistro">
             <form [formGroup]="libroForm" (ngSubmit)="guardar()">
@@ -80,9 +57,6 @@
                 </div>
 
 
-
-
-
                 <button type="submit" class="btn btn-primary" [disabled]="libroForm.invalid">Save</button>
 
             </form>
@@ -92,6 +66,43 @@
         <button type="button" class="btn btn-success" (click)="resetearFormulario(); modal.close()">Cancelar</button>
     </div>
 </ng-template>
+
+<div class="table-container">
+
+    <table class="content-table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Autor</th>
+                <th>Categoria</th>
+                <th>Accion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of libros | paginate: { itemsPerPage: 3, currentPage:pageActual }" >
+                <th>{{item.nombre}}</th>
+                <th>${{item.precio}}</th>
+                <th>{{item.autor.nombre}}</th>
+                <th>{{item.categoria.nombre}}</th>
+                <th>
+                    <button id="edit"type="button" class="btn btn-outline-primary" (click)="editar(contenido,item)">
+                        <i class="fas fa-pencil-alt"></i> 
+                    </button>
+
+                    <button type="button" class="btn btn-outline-danger" (click)="desactivar(item)">
+                        <i class="fa-solid fa-power-off"></i> 
+                    </button> 
+                </th>
+            </tr>
+        </tbody>
+
+    </table>
+    <div  class="d-flex justify-content-center " >
+        <pagination-controls class="my-pagination" (pageChange)="pageActual = $event"></pagination-controls>
+    </div>
+</div>
+
 
 
 

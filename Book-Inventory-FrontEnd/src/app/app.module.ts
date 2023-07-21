@@ -11,7 +11,7 @@ import { AdministrarLibroComponent } from './administrar-libro/administrar-libro
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr';
-
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 /**
  * Configuración de las rutas de navegación para la aplicación Angular.
  * Cada ruta se asocia a un componente específico que se carga cuando la URL coincide con el 'path'.
@@ -68,7 +68,8 @@ const routes: Routes=[
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot() 
+    ToastrModule.forRoot() ,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -18,6 +18,9 @@ public class LibroService {
 	public <S extends Libro> S save(S entity) {
 		if(entity.getIdLibro()==null){
 			entity.setEstado("activo");
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
+		}else {
+			System.out.println("bbbbbbbbbbbbbbbbbbbbbbbb");
 		}
 		return libroRepository.save(entity);
 	}

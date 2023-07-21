@@ -62,8 +62,8 @@ export class LibroService {
   public saveLibro(libro: any): Observable<any> {
     try {
       // Realizar una petición HTTP POST a la API del servidor para guardar el libro.
-      this.response == this.httpClient.post(this.API_SERVER, libro);
-
+      this.response = this.httpClient.post(this.API_SERVER, libro);
+      console.log("this => "+this.response);
       // Mostrar un mensaje de éxito al usuario usando Toastr (suponiendo que se importó y se inyectó correctamente).
       this.toastrSvc.success('El Libro ha sido guardado exitosamente', 'Book Inventory');
     } catch (error) {

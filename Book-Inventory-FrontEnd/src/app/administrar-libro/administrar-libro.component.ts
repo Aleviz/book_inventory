@@ -5,10 +5,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AutorService } from '../servicio/autor/autor.service';
 import { CategoriaService } from '../servicio/categoria/categoria.service';
 
+
 @Component({
   selector: 'app-administrar-libro',
   templateUrl: './administrar-libro.component.html',
-  styleUrls: ['./administrar-libro.component.css']
+  styleUrls: ['./administrar-libro.component.css','./administrar-libro.component.scss' ]
 })
 export class AdministrarLibroComponent implements OnInit {
 
@@ -16,7 +17,7 @@ export class AdministrarLibroComponent implements OnInit {
   libroForm: FormGroup; // Variable de tipo FormGroup, representa el formulario de libro para su edicion o creacion 
   autores: any; // Variable de tipo any, esta variable almacenara una lista de autores obtenida mediante una solicitud HTTP al servidor
   categorias: any;// Variable de tipo any, esta variable almacenara una lista de categorias obtenida mediante una solicitud HTTP al servidor
-
+  pageActual:number=1;
 
   /**
    * El constructor del componente AdministrarLibroComponent realiza la inyeccion de dependecias para obtener 
@@ -97,7 +98,7 @@ export class AdministrarLibroComponent implements OnInit {
         this.libros = updatedLibros;
       });
       // Cerrar el modal utilizando el método 'dismissAll()' proporcionado por NgbModal.
-      this.modal.dismissAll;
+      this.modal.dismissAll();
     })
   }
 

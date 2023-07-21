@@ -1,43 +1,142 @@
-.table-container {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
-    overflow-x: auto;
-  }
+.table-container{
+  height: 531px;
+  padding-bottom: 290px;
+  margin-bottom: -1px;
+}
 
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    
-  }
+.content-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  width: 850px; /* Ancho fijo de la tabla */
+  border: 2px solid #008000;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  height: 100px; /* Altura fija de la tabla */
+  overflow-y: auto; /* Hace que la tabla tenga una barra de desplazamiento vertical cuando el contenido es demasiado grande */
+}
 
-  .table th, .table td {
-    padding: 12px;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
+#edit{
+  margin-right: 11%;
+}
+.content-table thead tr {
+  background-color: #529263ea;
+  color: #ffffffea;
+  text-align: left;
+  font-weight: bold;
+  
+  text-transform: uppercase;
+  text-align: center;
   
 }
 
-  .table th {
-    background-color: #f7f7f7;
-    font-weight: bold;
-    color: #333;
-  }
+.content-table th,
+.content-table td {
+  padding: 12px 15px;
+}
 
-  .table tbody tr:hover {
-    background-color: #f2f2f2;
-  }
-
+.content-table tbody tr {
+  border-bottom: 1px solid #ffffff;
+  color: #ffffff;
   
-  .title {
+  text-align: center;
+}
+
+
+.btn-libro{
+
+
+  border: 2px solid green; /* Bordess verdes */
+
+  background-color: rgba(0, 255, 42, 0.151); /* Fondo negro */
+  color: white; /* Texto negro */
+  font-size: 16px;
+  cursor: pointer;
+
+  padding: 4px 20px;
+  position: absolute;
+  bottom: 61%;
+  margin-bottom: 8px;
+
+  border-radius: 2px; /* Bordes redondos */
+  transition: background-color 0.3s, padding 0.3s; /* Transiciones suaves para el fondo y el padding */
+
+
+
+}
+
+
+
+
+.content-table tbody{
+  
+  background-color: #242222; /* Fondo negro */
+  font-weight: normal;
+}
+
+tbody tr:hover   .content-table {
+  background-color: #ffffff; /* Cambiar el color del botón al pasar el mouse sobre la celda */
+  /* Otros estilos adicionales para el botón */
+}
+
+.content-table tbody tr:hover {
+  background-color: #ffffff; /* Cambiar el fondo de la fila al pasar el mouse sobre la celda */
+  border-bottom: 3px solid #0aff02; /* Cambiar el borde de la fila al pasar el mouse sobre la celda */
+  
+  color: #000; /* Cambiar el color del texto al pasar el mouse sobre la celda */
+}
+
+.title {
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #333;
+    color: #ffffff;
   }
+.underline{
+  position: relative;
+    margin-left: 47%;
+    padding-bottom: 1px;
+    border-left: 208px solid #8af776;
+}
+
+.descrip{
+  margin-left: 50%;
+  padding-bottom: 19%;
+  border-left: 190px ;
+  position: relative;
+
+}
+.titulo{
+  position: relative;
+  text-align: center;
+  font-weight: bolder;
+  margin: 0%;
+  padding-top: 5%;
+}
+.btn-libro:hover {
+  padding: 10px 20px;
+  background-color: #1f750f; /* Fondo blanco */
+    color: white; /* Texto blanco */
+}
+
+/* Estilos para cuando se hace clic en el botón */
+.btn-libro:active {
+  background-color: rgba(11, 156, 35, 0.11); /* Fondo negro */
+  color: rgb(255, 255, 255); /* Texto verde */
+}
 
 
+
+
+
+
+
+.underline2{
+    position: relative;
+    margin-left: 0%;
+    padding-bottom: 4px;
+    border-left: 798px solid #000000;
+}
 
   .modal {
     display: none;
@@ -50,13 +149,42 @@
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
   }
-
   .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    color: #000;
+  }
+  .modal-body{
+    color: #000;
+  }
+  .modal-header{
+       display: flex;
+    flex-shrink: 0;
+    margin-left: 31%;
+    padding-right: 127px;
+    border-left: 79px;
+    justify-content: center;
+    padding: var(--bs-modal-header-padding);
+    border:0px;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    color: #000;
+  }
+  
+  .close{
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    margin-left: 61%;
+  }
+  #titulo-modal{
+    color: #000;
+    text-align: center;
   }
 
   .close {
