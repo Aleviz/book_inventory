@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bookinventory.core.model.Categoria;
 import com.bookinventory.core.service.CategoriaService;
 
+/*
+ * Controlador REST para la entidad Categoria.
+ * Este controlador proporciona endpoints para realizar operaciones CRUD en la entidad Categoria, 
+ */
 @RestController
 @RequestMapping("/categoria/")
 public class CategoriaREST {
 	
-		//Inyeccion del servicio CategoriaService
+	// Inyección del servicio CategoriaService mediante la anotación @Autowired
 		@Autowired
 		private CategoriaService categoriaService;
 		

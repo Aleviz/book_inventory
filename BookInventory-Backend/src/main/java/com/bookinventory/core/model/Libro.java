@@ -8,23 +8,29 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+/**
+ * Clase de modelo para la entidad Libro.
+ * Esta clase representa un libro en la base de datos y se mapea a la tabla 'libro'.
+ */
 @Entity
 @Table(name="libro")
 public class Libro {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long idLibro;
-	private String nombre;
+	private Long idLibro; // Atributo privado que almacena el ID del libro.
+	private String nombre;// Atributo privado que almacena el nombre del libro.
 	
 	@ManyToOne
 	@JoinColumn(name="autor")
-	private Autor autor;
+	private Autor autor;// Atributo privado que almacena el autor del libro mediante una relación ManyToOne.
 	@ManyToOne
 	@JoinColumn(name="categoria")
-	private Categoria categoria;
-	private double precio;
-	private String estado;
+	private Categoria categoria;// Atributo privado que almacena la categoría del libro mediante una relación ManyToOne.
+
+	private double precio; // Atributo privado que almacena el precio del libro.
+	private String estado; // Atributo privado que almacena el estado del libro (activo o desactivado).
+
 	
 	
 	public Libro() {}
@@ -40,6 +46,7 @@ public class Libro {
 		this.estado = estado;
 	}
 
+	// Getters y Setters para todos los atributos.
 
 	public Long getIdLibro() {
 		return idLibro;

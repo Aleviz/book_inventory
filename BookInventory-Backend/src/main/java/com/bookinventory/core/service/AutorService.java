@@ -11,9 +11,17 @@ import com.bookinventory.core.repository.AutorRepository;
 @Service
 public class AutorService {
 	
+	/**
+	 * Inyeccion de Dependecia del repositorio AutorRepository mediante la
+	 * anotacion de '@Autowired'
+	 * */
 	@Autowired
 	private AutorRepository autorRepository;
 	
+	/*
+	 * Método que nos permite obtener todos los autores
+	 * @return retorna una lista de todos los autores
+	 * **/
 	public List<Autor> getAllAutores(){
 		return autorRepository.findAll();
 	}

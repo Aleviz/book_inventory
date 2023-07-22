@@ -8,6 +8,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+
+/**
+ * Clase de modelo para la entidad Autor.
+ * Esta clase representa un autor en la base de datos y se mapea a la tabla 'autor'.
+ */
 @Entity
 @Table(name="autor")
 public class Autor {
@@ -15,10 +20,10 @@ public class Autor {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long idAutor;
-	private String nombre;
-	private Date fechaNacimiento;
-	private String pais;
+	private Long idAutor;// Atributo privado que almacena el ID del autor.
+	private String nombre;// Atributo privado que almacena el nombre del autor.
+	private Date fechaNacimiento;// Atributo privado que almacena la fecha de nacimiento del autor.
+	private String pais;// Atributo privado que almacena el pais del autor.
 	
 	
 	public Autor() {}
@@ -31,7 +36,7 @@ public class Autor {
 		this.pais = pais;
 	}
 
-
+	// Getters y Setters para todos los atributos.
 	public Long getIdAutor() {
 		return idAutor;
 	}

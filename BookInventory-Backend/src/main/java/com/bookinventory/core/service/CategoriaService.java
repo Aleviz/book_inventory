@@ -11,9 +11,18 @@ import com.bookinventory.core.repository.CategoriaRepository;
 @Service
 public class CategoriaService {
 
+	/**
+	 * Inyección de Dependecia del repositorio CategoriaRepository mediante la
+	 * anotacion de '@Autowired'
+	 * */
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
+
+	/*
+	 * Método que nos permite obtener todos los categorias
+	 * @return retorna una lista de todos las categorias
+	 * **/
 	public List<Categoria> getAllCategorias(){
 		return categoriaRepository.findAll();
 	}

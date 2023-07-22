@@ -11,11 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bookinventory.core.model.Autor;
 import com.bookinventory.core.service.AutorService;
 
+/*
+ * Controlador REST para la entidad Autor.
+ * Este controlador proporciona endpoints para realizar operaciones CRUD en la entidad Autor, 
+ */
 @RestController
 @RequestMapping("/autor/")
 public class AutorREST {
 	
-	//Inyeccion del servicio AutoService
+	// Inyección del servicio AutorService mediante la anotación @Autowired
 	@Autowired
 	private AutorService autorService;
 	

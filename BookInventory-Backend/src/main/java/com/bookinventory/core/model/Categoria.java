@@ -6,16 +6,19 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
+/**
+ * Clase de modelo para la entidad Categoria.
+ * Esta clase representa un autor en la base de datos y se mapea a la tabla 'categoria'.
+ */
 @Entity
 @Table(name="categoria")
 public class Categoria {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long idCategoria;
-	private String nombre;
-	private String archivo;
+	private Long idCategoria;// Atributo privado que almacena el ID de la categoria.
+	private String nombre;// Atributo privado que almacena el nombre de la categoria.
+	private String archivo;// Atributo privado que almacena el codigo-archivo de la categoria.
 	
 	
 	public Categoria() {}
@@ -24,7 +27,7 @@ public class Categoria {
 		this.archivo=archivo;
 	}
 	
-	
+	// Getters y Setters para todos los atributos.
 	public Long getIdCategoria() {
 		return idCategoria;
 	}
