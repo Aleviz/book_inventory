@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { LibroService } from '../servicio/libro/libro.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AutorService } from '../servicio/autor/autor.service';
 import { CategoriaService } from '../servicio/categoria/categoria.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Subject, of, switchMap } from 'rxjs';
 
 
 @Component({
   selector: 'app-administrar-libro',
   templateUrl: './administrar-libro.component.html',
-  styleUrls: ['./administrar-libro.component.css','./administrar-libro.component.scss' ]
+  styleUrls: ['./administrar-libro.component.css', './administrar-libro.component.scss']
 })
 export class AdministrarLibroComponent implements OnInit {
 
@@ -17,7 +19,15 @@ export class AdministrarLibroComponent implements OnInit {
   libroForm: FormGroup; // Variable de tipo FormGroup, representa el formulario de libro para su edicion o creacion 
   autores: any; // Variable de tipo any, esta variable almacenara una lista de autores obtenida mediante una solicitud HTTP al servidor
   categorias: any;// Variable de tipo any, esta variable almacenara una lista de categorias obtenida mediante una solicitud HTTP al servidor
-  pageActual:number=1;
+  pageActual: number = 1;
+  private modalRef: NgbModalRef;
+  mensaje: string;
+  cambio:number;
+
+  bsModalRef: BsModalRef;
+  resultSubject: Subject<boolean> = new Subject<boolean>();
+
+
 
   /**
    * El constructor del componente AdministrarLibroComponent realiza la inyeccion de dependecias para obtener 
@@ -34,6 +44,8 @@ export class AdministrarLibroComponent implements OnInit {
     public autorService: AutorService,
     public categoriaService: CategoriaService,
     private modal: NgbModal,
+
+    private modalService: BsModalService
   ) { }
 
 
@@ -81,14 +93,34 @@ export class AdministrarLibroComponent implements OnInit {
   }
 
 
+
+  
+  abrir(confirmar: TemplateRef<any>) {
+    this.bsModalRef = this.modalService.show(confirmar);
+    return this.resultSubject.asObservable();
+  }
+
   /**
    * Método que se encarga de guardar un libro enviando una solicitud al servicio LibroService.
    * Utiliza el formulario 'libroForm' para obtener los datos del libro a guardar.
    * Una vez que el libro se guarda exitosamente, se restablece el formulario, 
    * se actualiza la lista de libros y se cierra el modal.
-   */
-  guardar() {
-
+   */  
+  guardar(confirmar: TemplateRef<any>) {
+    this.mensaje = "¿Estás seguro de que deseas guardar los cambios?";
+    this.cambio=1;
+    this.abrir(confirmar).subscribe((resultado) => {
+      if (resultado) {
+        this.confirm(); // Llamamos a confirm() solo si el usuario acepta desde el modal.
+      } else {
+        console.log("Guardado canceladsssso.");
+        this.bsModalRef.hide(); // Ocultamos el modal si el usuario cancela.
+      }
+    });
+  }
+  
+  confirm(): void {
+    if(this.cambio==1){
     // Guarda el libro utilizando el servicio LibroService y los datos del formulario 'libroForm'.
     this.libroService.saveLibro(this.libroForm.value).subscribe(res => {
       // Restablecer el formulario después de guardar el libro exitosamente.
@@ -96,12 +128,31 @@ export class AdministrarLibroComponent implements OnInit {
       // Obtener la lista actualizada de libros desde el servicio LibroService y asignarla a la variable 'libros'.
       this.libroService.getAllLibros().subscribe(updatedLibros => {
         this.libros = updatedLibros;
+        // Cerrar el modal utilizando el método 'dismissAll()' proporcionado por NgbModal.
+        this.bsModalRef.hide();
+        this.modal.dismissAll();
       });
-      // Cerrar el modal utilizando el método 'dismissAll()' proporcionado por NgbModal.
-      this.modal.dismissAll();
-    })
-  }
+    });
+   }else if(this.cambio==2){
+  
+    // Llama al servicio 'libroService' para desactivar el libro en el servidor.
+    this.libroService.desactivar(this.libroForm.value).subscribe(res => {
+      // Actualiza la lista de libros local para reflejar los cambios de desactivación.
+      this.libros = this.libros.filter(libro1 => res.idLibro != libro1.idLibro);
 
+      // Si la desactivación es exitosa, elimina el libro de la lista local 'libros'.
+    this.bsModalRef.hide();      
+    });
+   }else{
+    this.bsModalRef.hide();
+    
+   }
+  }
+  
+  cancel(): void {
+    this.resultSubject.next(false);
+    this.bsModalRef.hide();
+  }
 
   /**
  * Método que se encarga de editar un libro.
@@ -133,9 +184,10 @@ export class AdministrarLibroComponent implements OnInit {
  * Si la desactivación es exitosa, se actualiza la lista de libros local para reflejar los cambios.
  * @param libro - El objeto que representa el libro a desactivar y contiene los datos a mostrar en el formulario.
  */
-  desactivar(libro) {
-
-    // Asigna los valores del libro proporcionado al formulario 'libroForm' a excepcion del campo "estado" donde se encuentra almacenado la palabra "desactivado".
+  desactivar(confirmar, libro) {
+    let resp;
+    this.cambio=2;
+    this.mensaje = "¿Estás seguro de que deseas desactivar el libro?";
     this.libroForm.setValue({
       idLibro: libro.idLibro,
       nombre: libro.nombre,
@@ -144,17 +196,19 @@ export class AdministrarLibroComponent implements OnInit {
       precio: libro.precio,
       estado: 'desactivado',
     });
+    this.abrir(confirmar).subscribe((resultado) => {
+      if (resultado) {
+        // Asigna los valores del libro proporcionado al formulario 'libroForm' a excepcion del campo "estado" donde se encuentra almacenado la palabra "desactivado".
+        if (resultado) {
+          this.confirm(); // Llamamos a confirm() solo si el usuario acepta desde el modal.
+        } else {
+          console.log("Guardado canceladsssso.");
+          this.bsModalRef.hide(); // Ocultamos el modal si el usuario cancela.
+        }
 
-    // Llama al servicio 'libroService' para desactivar el libro en el servidor.
-    this.libroService.desactivar(this.libroForm.value).subscribe(res => {
-      // Actualiza la lista de libros local para reflejar los cambios de desactivación.
-      this.libros = this.libros.filter(libro1 => res.idLibro != libro1.idLibro);
+      } 
 
-      // Si la desactivación es exitosa, elimina el libro de la lista local 'libros'.
-      if (res == true) {
-        this.libros.pop(libro);
-      }
-    })
+    });
   }
 
   /**
@@ -163,7 +217,18 @@ export class AdministrarLibroComponent implements OnInit {
  */
   openForm(contenido): void {
     // Abre el modal utilizando la biblioteca NgbModal y muestra el contenido especificado.
-    this.modal.open(contenido, { size: 'lg' });
+
+    const modalRef = this.modal.open(contenido, { size: 'string', centered: true, animation: true, backdrop: 'static' });
+    modalRef.result.then(
+      // Manejar cierre con resultado (por ejemplo, al confirmar)
+      (result) => {
+        // Aquí puedes manejar cualquier lógica adicional después de cerrar el modal
+      },
+      // Manejar cierre sin resultado (por ejemplo, al hacer clic fuera del modal)
+      (reason) => {
+        this.resetearFormulario();
+      }
+    );
   }
 
   /**

@@ -10,22 +10,18 @@ import com.bookinventory.core.repository.LibroRepository;
 
 @Service
 public class LibroService {
-	
+
 	@Autowired
 	private LibroRepository libroRepository;
-	
-		
+
 	public <S extends Libro> S save(S entity) {
-		if(entity.getIdLibro()==null){
+		if (entity.getIdLibro() == null) {
 			entity.setEstado("activo");
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaa");
-		}else {
-			System.out.println("bbbbbbbbbbbbbbbbbbbbbbbb");
 		}
 		return libroRepository.save(entity);
 	}
 
-	public List<Libro> getAllLibroActive(String estado){
+	public List<Libro> getAllLibroActive(String estado) {
 		return libroRepository.findByEstado(estado);
 	}
 }

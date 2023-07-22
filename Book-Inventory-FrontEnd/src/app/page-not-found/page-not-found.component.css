@@ -1,0 +1,11 @@
+.ops{
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.ops a{
+    color:white;
+    text-decoration: none;
+    
+}

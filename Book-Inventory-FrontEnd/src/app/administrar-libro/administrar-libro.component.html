@@ -1,41 +1,60 @@
  <h1 class="titulo">BOOK INVENTORY</h1>
  <div class="underline" ></div>
- <p class="descrip">Administracion de Libros</p>
+ <div class="routerL">
+ <i class="fa-solid fa-house"></i> <a  routerLink=""> Inicio</a></div><p class="descrip">/ Administracion de Libros</p>
 <!-- Button trigger modal -->
 <button type="button" class="btn-libro" (click)="openForm(contenido)">
     Crear Libro
 </button>
 
 
-<ng-template #contenido let-modal>
+<ng-template #confirmar let-modal>
+    <div class="confirm" >
+      <h4 class="modal-title ">CONFIRMACION</h4>
+    </div>
+    <div class="mensaje">
+      <p>{{mensaje}}</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="confirm()"><i class="fa-solid fa-square-check"></i> Aceptar</button>
+      <button type="button" class="btn btn-danger" (click)="cancel()"><i class="fa-solid fa-square-xmark"></i> Cancelar</button>
+    </div>
+  </ng-template>
+
+<div >
+<ng-template class="modalx"   #contenido let-modal>
 
 
 
-    <div class="modal-header">
+    <div class="modal-header" >
         <h4 class="modal-title">Formulario</h4>
       
 
-        <button class="close" aria-label="close" type="button" (click)="resetearFormulario();modal.dismiss()">
-            <span aria-hidden="true">&times;</span>
+        <button class="close"  type="button" (click)="resetearFormulario(); modal.dismiss()">
+            <i class="fa-solid fa-rectangle-xmark"></i><span aria-hidden="true"></span>
         </button>
 
     </div>
-    <div class="underline2" ></div>
+
     <div class="modal-body">
         <div class="formularioRegistro">
-            <form [formGroup]="libroForm" (ngSubmit)="guardar()">
+            <form [formGroup]="libroForm" (ngSubmit)="guardar(confirmar)">
+                <div id="division">
                 <div class="form-group">
-                    <label>Nombre</label>
+                    <i class="fa-solid fa-book"></i><span class="mar"> </span>
+                    <label class="nombre-item" > Libro:</label>
                     <input [class]="isValidFieldNombre('nombre').invalidClass" type="text" formControlName="nombre"
                         class="form-control" placeholder="Por favor ingresa el nombre del Libro">
-
-                    <div *ngIf="isValidFieldNombre('nombre').errorMessage" class="invalid-feedback">
+<br/>                    <div *ngIf="isValidFieldNombre('nombre').errorMessage" class="invalid-feedback">
                         {{isValidFieldNombre('nombre').errorMessage }}</div>
 
                 </div>
 
                 <div class="form-group">
-                    <label>Precio</label>
+                    <i class="fa-solid fa-circle-dollar-to-slot"></i><span class="mar"> </span>
+                    <label class="nombre-item" >Precio
+
+                    </label>
                     <input [class]="isValidFieldPrecio('precio').invalidClass" type="number" formControlName="precio"
                         class="form-control" placeholder="Por favor ingresa el valor del Libro" min="0">
                     <div *ngIf="isValidFieldPrecio('precio').errorMessage" class="invalid-feedback">
@@ -43,30 +62,36 @@
                 </div>
 
                 <div class="form-group" formGroupName="autor">
-                    <label>Autor</label>
+                    <i class="fa-solid fa-user-pen"></i><span class="mar"> </span><label class="nombre-item" >Autor </label>
                     <select name="autor" id="autor" formControlName="idAutor" class="form-control">
                         <option [ngValue]="item.idAutor" *ngFor="let item of autores">{{item.nombre}}</option>
                     </select>
                 </div>
 
                 <div class="form-group" formGroupName="categoria">
-                    <label>Categoria</label>
+                    <i class="fa-solid fa-tags"></i><span class="mar"> </span><label class="nombre-item">Categoria 
+                        
+                    </label>
                     <select name="categoria" id="categoria" formControlName="idCategoria" class="form-control">
                         <option [ngValue]="item.idCategoria" *ngFor="let item of categorias">{{item.nombre}}</option>
                     </select>
                 </div>
+    
+                
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success" [disabled]="libroForm.invalid">
+                    <i class="fa-solid fa-floppy-disk"></i> Guardar</button>
 
-
-                <button type="submit" class="btn btn-primary" [disabled]="libroForm.invalid">Save</button>
-
+                <button type="button" class="btn btn-danger" (click)="resetearFormulario(); modal.close()">
+                    <i class="fa-solid fa-ban"></i> Cancelar</button>
+            </div>
             </form>
         </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-success" (click)="resetearFormulario(); modal.close()">Cancelar</button>
-    </div>
-</ng-template>
 
+</ng-template>
+</div>
 <div class="table-container">
 
     <table class="content-table">
@@ -90,7 +115,7 @@
                         <i class="fas fa-pencil-alt"></i> 
                     </button>
 
-                    <button type="button" class="btn btn-outline-danger" (click)="desactivar(item)">
+                    <button type="button" class="btn btn-outline-danger" (click)="desactivar(confirmar, item)">
                         <i class="fa-solid fa-power-off"></i> 
                     </button> 
                 </th>

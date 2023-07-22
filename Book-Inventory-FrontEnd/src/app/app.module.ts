@@ -12,6 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr';
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { CommonModule } from '@angular/common';
 /**
  * Configuración de las rutas de navegación para la aplicación Angular.
  * Cada ruta se asocia a un componente específico que se carga cuando la URL coincide con el 'path'.
@@ -69,7 +72,10 @@ const routes: Routes=[
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot() ,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgbTooltipModule,
+    ModalModule.forRoot(),
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

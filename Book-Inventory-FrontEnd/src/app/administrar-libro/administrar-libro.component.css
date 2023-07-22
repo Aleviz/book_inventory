@@ -16,6 +16,32 @@
   overflow-y: auto; /* Hace que la tabla tenga una barra de desplazamiento vertical cuando el contenido es demasiado grande */
 }
 
+.mensaje{
+  padding-top: 5%;
+    padding-bottom: 0%;
+    text-align: center;
+    position: relative;
+    flex: 1 1 auto;
+    padding: var(--bs-modal-padding);
+    color: #000;
+}
+
+ .confirm{
+  margin-left: 0%;
+  display: flex;
+    flex-shrink: 0;
+    padding-right: 127px;
+    border-left: 79px;
+    justify-content: center;
+    padding: var(--bs-modal-header-padding);
+    border: 0px;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    color: #000;
+    margin-bottom: -5%;
+ }
+
 #edit{
   margin-right: 11%;
 }
@@ -131,6 +157,13 @@ tbody tr:hover   .content-table {
 
 
 
+.underline3{
+    position: relative;
+    margin-left: -2.1%;
+    padding-bottom: 4px;
+    border-left: 798px solid #000000;
+}
+
 .underline2{
     position: relative;
     margin-left: 0%;
@@ -160,43 +193,96 @@ tbody tr:hover   .content-table {
   .modal-body{
     color: #000;
   }
+
+  .invalid-feedback{
+    position: absolute;
+    margin-top: 11%;
+    margin-left: 26%;
+  }
+ 
+  .modalx ::ng-deep{   margin-top: 30%;
+  }
+  .form-group{
+        display: flex;
+  align-items: center; /* Alinea verticalmente los elementos dentro del contenedor */
+  margin-bottom: 28px;
+  }
+
+  .nombre-item{
+  flex-basis: 100px; /* Anchura fija del label 'Precio' */
+  text-align: left;
+  margin-right: 10px;
+}
+
+  .form-group input, .form-group select{
+flex: 1; /* Permitirá que los campos de entrada se expandan y ocupen todo el espacio disponible */
+  min-width: 150px; /* Ancho mínimo de los campos de entrada */
+  padding: 5px; 
+  }
+.modal-footer{
+  display: flex;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--bs-modal-padding) - var(--bs-modal-footer-gap) * .5);
+  background-color: var(--bs-modal-footer-bg);
+  border-top: var(--bs-modal-footer-border-width) solid var(--bs-modal-footer-border-color);
+  border-bottom-right-radius: var(--bs-modal-inner-border-radius);
+  border-bottom-left-radius: var(--bs-modal-inner-border-radius);
+}
+.mar{
+  margin-left: 2%;
+}
+#division{
+  position: relative;
+  margin-left: 0.9%;
+  padding-bottom: 0px;
+  border-top: 4px solid;
+  padding-top: 15px;
+  border-bottom: 4px solid;
+
+}
   .modal-header{
-       display: flex;
+    display: flex;
     flex-shrink: 0;
     margin-left: 31%;
     padding-right: 127px;
     border-left: 79px;
     justify-content: center;
     padding: var(--bs-modal-header-padding);
-    border:0px;
+    border: 0px;
     align-items: center;
     flex-wrap: nowrap;
     flex-direction: row;
     color: #000;
+    margin-bottom: -5%;
   }
   
-  .close{
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    margin-left: 61%;
+  .routerL{
+    position: absolute;
+    margin-left: 18.7%;
   }
+  .routerL a{
+    color: white;
+    text-decoration: none;
+  }
+ 
   #titulo-modal{
     color: #000;
     text-align: center;
   }
 
   .close {
-    color: #aaaaaa;
+    color: #000000;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    border: 0;
+    margin-left: 57%;
+    background: white;
   }
 
-  .close:hover,
-  .close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+  .close:hover {
+    color: #eb0505;
   }
