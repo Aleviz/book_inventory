@@ -1,0 +1,29 @@
+CREATE TABLE categoria(
+ id_categoria SERIAL NOT NULL,
+ nombre CHARACTER VARYING(25) NOT NULL,
+ archivo CHARACTER VARYING(25) NOT NULL,
+
+ PRIMARY KEY (id_categoria)
+);
+
+CREATE TABLE autor(
+ id_autor SERIAL NOT NULL,
+ nombre CHARACTER VARYING(25) NOT NULL,
+ fecha_nacimiento TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+ pais CHARACTER VARYING(25) NOT NULL,
+
+ PRIMARY KEY (id_autor)
+);
+
+CREATE TABLE libro(
+ id_libro SERIAL NOT NULL,
+ nombre CHARACTER VARYING(50) NOT NULL,
+ autor SERIAL NOT NULL,
+ categoria SERIAL NOT NULL,
+ precio NUMERIC(7,2) NOT NULL,
+ estado CHARACTER VARYING(11) NOT NULL,
+
+ PRIMARY KEY (id_libro), 
+ FOREIGN KEY (autor) REFERENCES autor(id_autor),
+ FOREIGN KEY (categoria) REFERENCES categoria(id_categoria)
+);
