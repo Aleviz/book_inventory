@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 public class Categoria {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCategoria;// Atributo privado que almacena el ID de la categoria.
 	private String nombre;// Atributo privado que almacena el nombre de la categoria.
 	private String archivo;// Atributo privado que almacena el codigo-archivo de la categoria.

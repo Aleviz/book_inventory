@@ -1,5 +1,3 @@
-
-
 CREATE TABLE categoria(
  id_categoria SERIAL NOT NULL,
  nombre CHARACTER VARYING(25) NOT NULL,
@@ -17,19 +15,15 @@ CREATE TABLE autor(
  PRIMARY KEY (id_autor)
 );
 
-
-
-
 CREATE TABLE libro(
  id_libro SERIAL NOT NULL,
  nombre CHARACTER VARYING(50) NOT NULL,
- autor INT NOT NULL,
- categoria INT NOT NULL,
+ autor SERIAL NOT NULL,
+ categoria SERIAL NOT NULL,
  precio NUMERIC(7,2) NOT NULL,
  estado CHARACTER VARYING(11) NOT NULL,
- 
+
+ PRIMARY KEY (id_libro), 
  FOREIGN KEY (autor) REFERENCES autor(id_autor),
  FOREIGN KEY (categoria) REFERENCES categoria(id_categoria)
- 
 );
-

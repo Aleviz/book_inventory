@@ -19,7 +19,7 @@ public class Autor {
 
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idAutor;// Atributo privado que almacena el ID del autor.
 	private String nombre;// Atributo privado que almacena el nombre del autor.
 	private Date fechaNacimiento;// Atributo privado que almacena la fecha de nacimiento del autor.

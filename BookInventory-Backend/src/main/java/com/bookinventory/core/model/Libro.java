@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
 public class Libro {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idLibro; // Atributo privado que almacena el ID del libro.
 	private String nombre;// Atributo privado que almacena el nombre del libro.
 	

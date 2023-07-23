@@ -8,5 +8,4 @@ VALUES( 'Drama', '0001' ),
  ('Romance', '0007' ),
  ('Biografia', '0008' ),
  ('Autoayuda', '0009' ),
- ('Ciencia y Tecnologia', '00010' ),
- ('Poesia', '00011' );
+ ('Ciencia y Tecnologia', '00010' );

@@ -197,7 +197,7 @@ tbody tr:hover   .content-table {
   .invalid-feedback{
     position: absolute;
     margin-top: 11%;
-    margin-left: 26%;
+    margin-left: 30%;
   }
  
   .modalx ::ng-deep{   margin-top: 30%;

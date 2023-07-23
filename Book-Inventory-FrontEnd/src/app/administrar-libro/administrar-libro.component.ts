@@ -5,7 +5,7 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { AutorService } from '../servicio/autor/autor.service';
 import { CategoriaService } from '../servicio/categoria/categoria.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { Subject, of, switchMap } from 'rxjs';
+import { Subject} from 'rxjs';
 
 
 @Component({
